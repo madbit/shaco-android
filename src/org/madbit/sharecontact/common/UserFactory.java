@@ -11,10 +11,12 @@ public class UserFactory {
 	private static IUser user;
 	private static Context appContext;
 	
-	public static IUser getUser(Context context) {
+	public static void initialize(Context context) {
 		if(appContext == null)
 			appContext = context;
-		
+	}
+	
+	public static IUser getUser() {
 		if(user == null)			
 			user = initializeUser();
 		

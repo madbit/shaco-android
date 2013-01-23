@@ -1,8 +1,10 @@
 package org.madbit.sharecontact.addressbook.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Contact {
+public class Contact implements Serializable {
+	private static final long serialVersionUID = 2413165158733644155L;
 	
 	private String contactId;
 	private String displayName;

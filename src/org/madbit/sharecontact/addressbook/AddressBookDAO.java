@@ -11,10 +11,12 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.Data;
+import android.util.Log;
 
 public class AddressBookDAO {
 
+	private static final String TAG = "org.madbit.sharecontact.addressbook.AddressBookDAO";
+	
 	private static AddressBookDAO instance;
 
 	private AddressBookDAO() {
@@ -67,8 +69,8 @@ public class AddressBookDAO {
 				}
 				
 				phoneNumbers.add(contactDetail);
-								
-				System.out.println(contactId + " " + displayName + " " + number + " " + type);			
+				
+				Log.d(TAG, contactId + " " + displayName + " " + number + " " + type);
 			}
 			contact.setPhoneNumbers(phoneNumbers);
 			contacts.add(contact);
@@ -123,8 +125,8 @@ public class AddressBookDAO {
 				}
 				
 				phoneNumbers.add(contactDetail);
-								
-				System.out.println(contactId + " " + displayName + " " + number + " " + type);			
+				
+				Log.d(TAG, contactId + " " + displayName + " " + number + " " + type);			
 			}
 			contact.setPhoneNumbers(phoneNumbers);
 			contacts.add(contact);
@@ -136,34 +138,34 @@ public class AddressBookDAO {
 		return contacts;
 	}
 
-	public void readContactById(ContentResolver cr, String contactId) {
-		
-		Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, "CONTACT_ID = '" + contactId + "'", null, null);
-		if (cursor.moveToFirst()) {
-			//
-			//  Get all phone numbers.
-			//
-			Cursor phones = cr.query(Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
-			while (phones.moveToNext()) {
-				String number = phones.getString(phones.getColumnIndex(Phone.NUMBER));
-				int type = phones.getInt(phones.getColumnIndex(Phone.TYPE));
-				
-				switch (type) {
-				case Phone.TYPE_HOME:
-					// do something with the Home number here...
-					break;
-				case Phone.TYPE_MOBILE:
-					// do something with the Mobile number here...
-					break;
-				case Phone.TYPE_WORK:
-					// do something with the Work number here...
-					break;
-				}
-			}
-			phones.close();
-		}
-		cursor.close();
-	}
+//	public void readContactById(ContentResolver cr, String contactId) {
+//		
+//		Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, "CONTACT_ID = '" + contactId + "'", null, null);
+//		if (cursor.moveToFirst()) {
+//			//
+//			//  Get all phone numbers.
+//			//
+//			Cursor phones = cr.query(Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
+//			while (phones.moveToNext()) {
+//				String number = phones.getString(phones.getColumnIndex(Phone.NUMBER));
+//				int type = phones.getInt(phones.getColumnIndex(Phone.TYPE));
+//				
+//				switch (type) {
+//				case Phone.TYPE_HOME:
+//					// do something with the Home number here...
+//					break;
+//				case Phone.TYPE_MOBILE:
+//					// do something with the Mobile number here...
+//					break;
+//				case Phone.TYPE_WORK:
+//					// do something with the Work number here...
+//					break;
+//				}
+//			}
+//			phones.close();
+//		}
+//		cursor.close();
+//	}
 
 //	private void readContactsOld(ContentResolver contentResolver) {
 //		String[] projection = new String[] {

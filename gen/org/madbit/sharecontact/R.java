@@ -28,6 +28,15 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int button_cancel=0x7f040006;
+        public static final int button_close=0x7f040007;
+        /**  Button 
+         */
+        public static final int button_ok=0x7f040005;
+        /**  Dialog 
+         */
+        public static final int dialog_share_failed=0x7f040003;
+        public static final int dialog_share_success=0x7f040004;
         public static final int menu_settings=0x7f040002;
         public static final int title_share_contact=0x7f040001;
     }

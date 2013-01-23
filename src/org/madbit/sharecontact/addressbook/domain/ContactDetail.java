@@ -1,8 +1,12 @@
 package org.madbit.sharecontact.addressbook.domain;
 
+import java.io.Serializable;
+
 import org.madbit.sharecontact.addressbook.common.ContactDetailType;
 
-public class ContactDetail {
+public class ContactDetail implements Serializable {
+	private static final long serialVersionUID = -1421272876398985028L;
+	
 	private ContactDetailType contactDetailType;
 	private String value;
 	

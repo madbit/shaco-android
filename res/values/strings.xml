@@ -5,5 +5,14 @@
     <string name="title_share_contact">Share contact</string>
     
     <string name="menu_settings">Settings</string>
-
+    
+    <!-- Dialog -->
+	<string name="dialog_share_failed">Share failed</string>
+	<string name="dialog_share_success">Share success</string>
+	
+	<!-- Button -->
+	<string name="button_ok">OK</string>
+	<string name="button_cancel">Cancel</string>
+	<string name="button_close">Close</string>
+	
 </resources>
