@@ -22,17 +22,13 @@ public class MainActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		UserFactory.initialize(getApplicationContext());		
+		populateContactList();		
+	}
 
-		// get contacts list from Address Book
-		AddressBookDAO cm = AddressBookDAO.getInstance();
-		List<Contact> contacts = cm.readContacts(getContentResolver());
-		
-		// populate list
-		ContactsListAdapter contactsListAdapter = new ContactsListAdapter(MainActivity.this, R.layout.activity_main, contacts);
-		setListAdapter(contactsListAdapter);
-		contactsListAdapter.notifyDataSetChanged();
+	@Override
+	protected void onResume() {
+		super.onResume();
+		populateContactList();
 	}
 
 	@Override
@@ -50,6 +46,19 @@ public class MainActivity extends ListActivity {
 			shareContactActivity.putExtra("sharedContact", contact);			
 			this.startActivity(shareContactActivity);
 		}
+	}
+
+	private void populateContactList() {
+		UserFactory.initialize(getApplicationContext());		
+
+		// get contacts list from Address Book
+		AddressBookDAO cm = AddressBookDAO.getInstance();
+		List<Contact> contacts = cm.readContacts(getContentResolver());
+		
+		// populate list
+		ContactsListAdapter contactsListAdapter = new ContactsListAdapter(MainActivity.this, R.layout.activity_main, contacts);
+		setListAdapter(contactsListAdapter);
+		contactsListAdapter.notifyDataSetChanged();
 	}
 
 }

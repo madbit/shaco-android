@@ -7,6 +7,7 @@ import org.madbit.sharecontact.addressbook.common.ContactDetailType;
 import org.madbit.sharecontact.addressbook.domain.Contact;
 import org.madbit.sharecontact.addressbook.domain.ContactDetail;
 
+import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.ContactsContract;
@@ -28,6 +29,17 @@ public class AddressBookDAO {
 			instance = new AddressBookDAO();
 		return instance;
 	}
+	
+	public void createContact(ContentResolver contentResolver, ArrayList<ContentProviderOperation> cpo) {
+		// Asking the Contact provider to create a new contact                 
+		 try {
+			 contentResolver.applyBatch(ContactsContract.AUTHORITY, cpo);
+		 } catch (Exception e) {
+//				     e.printStackTrace();
+//				     Toast.makeText(getApplicationContext(), "Exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+		 } 
+		
+	}
 
 	public List<Contact> readContacts(ContentResolver contentResolver) {
 		ArrayList<Contact> contacts = new ArrayList<Contact>();
@@ -44,38 +56,39 @@ public class AddressBookDAO {
 			contact.setDisplayName(displayName);
 			
 			// get all phone numbers for contactId
-			Cursor cursorPhones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
-			List<ContactDetail> phoneNumbers = new ArrayList<ContactDetail>();
-			while (cursorPhones.moveToNext()) {
-				String number = cursorPhones.getString(cursorPhones.getColumnIndex(Phone.NUMBER));
-				int type = cursorPhones.getInt(cursorPhones.getColumnIndex(Phone.TYPE));
-				
-				ContactDetail contactDetail = new ContactDetail();
-				contactDetail.setValue(number);				
-				
-				switch (type) {
-					case Phone.TYPE_HOME:
-						contactDetail.setContactDetailType(ContactDetailType.HOME);
-						break;
-					case Phone.TYPE_MOBILE:
-						contactDetail.setContactDetailType(ContactDetailType.MOBILE);
-						break;
-					case Phone.TYPE_WORK:
-						contactDetail.setContactDetailType(ContactDetailType.WORK);
-						break;
-					default:
-						contactDetail.setContactDetailType(ContactDetailType.HOME);
-						break;
-				}
-				
-				phoneNumbers.add(contactDetail);
-				
-				Log.d(TAG, contactId + " " + displayName + " " + number + " " + type);
-			}
-			contact.setPhoneNumbers(phoneNumbers);
-			contacts.add(contact);
+//			Cursor cursorPhones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
+//			List<ContactDetail> phoneNumbers = new ArrayList<ContactDetail>();
+//			while (cursorPhones.moveToNext()) {
+//				String number = cursorPhones.getString(cursorPhones.getColumnIndex(Phone.NUMBER));
+//				int type = cursorPhones.getInt(cursorPhones.getColumnIndex(Phone.TYPE));
+//				
+//				ContactDetail contactDetail = new ContactDetail();
+//				contactDetail.setValue(number);				
+//				
+//				switch (type) {
+//					case Phone.TYPE_HOME:
+//						contactDetail.setContactDetailType(ContactDetailType.HOME);
+//						break;
+//					case Phone.TYPE_MOBILE:
+//						contactDetail.setContactDetailType(ContactDetailType.MOBILE);
+//						break;
+//					case Phone.TYPE_WORK:
+//						contactDetail.setContactDetailType(ContactDetailType.WORK);
+//						break;
+//					default:
+//						contactDetail.setContactDetailType(ContactDetailType.HOME);
+//						break;
+//				}
+//				
+//				phoneNumbers.add(contactDetail);
+//				
+//				Log.d(TAG, contactId + " " + displayName + " " + number + " " + type);
+//			}
+//			cursorPhones.close();
 			
-			cursorPhones.close();			
+//			contact.setPhoneNumbers(phoneNumbers);
+			contacts.add(contact);
+					
 		}
 		cursorContact.close();
 
@@ -188,5 +201,7 @@ public class AddressBookDAO {
 //		} 
 //		cursor.close();
 //	}
+	
+	
 
 }

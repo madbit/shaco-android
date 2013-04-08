@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ShareContact</string>
+    <string name="app_name">Shaco</string>
     <string name="title_share_contact">Share contact</string>
     
     <string name="menu_settings">Settings</string>

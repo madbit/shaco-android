@@ -20,6 +20,7 @@ import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.madbit.sharecontact.addressbook.VCardFactory;
 import org.madbit.sharecontact.addressbook.domain.Contact;
 import org.madbit.sharecontact.addressbook.domain.ContactDetail;
 import org.madbit.sharecontact.addressbook.domain.IUser;
@@ -34,17 +35,19 @@ public class ShareContactHandler {
 	
 	public boolean shareContact(Contact toContact, Contact sharedContact) throws ServiceException {
 		
-		IUser localUser = UserFactory.getUser();
-		Document reqDocument = createRequest(toContact, sharedContact, localUser);
+		IUser localUser = UserFactory.getUser();		
 		
-		XMLOutputter xmlOutput = new XMLOutputter();
-		xmlOutput.setFormat(Format.getPrettyFormat());		
-		String request = xmlOutput.outputString(reqDocument);
-		Log.d(TAG, request);
-		
-		Document resDocument = postRequest(request);
-		
-		return isSuccessResponse(resDocument);		
+//		Document reqDocument = createRequest(toContact, sharedContact, localUser);
+//		
+//		XMLOutputter xmlOutput = new XMLOutputter();
+//		xmlOutput.setFormat(Format.getPrettyFormat());		
+//		String request = xmlOutput.outputString(reqDocument);
+//		Log.d(TAG, request);
+//		
+//		Document resDocument = postRequest(request);
+//		
+//		return isSuccessResponse(resDocument);	
+		return true;
 	}
 
 	private Document createRequest(Contact toContact, Contact sharedContact, IUser localUser) {
@@ -176,7 +179,7 @@ public class ShareContactHandler {
 
 	private Document postRequest(String request) throws ServiceException {
 		HttpClient httpClient = new DefaultHttpClient();
-		HttpPost post = new HttpPost("http://192.168.137.54:8080/sc/rest/shareContact");
+		HttpPost post = new HttpPost("http://141.137.79.77:8080/sc/rest/shareContact");
 		post.addHeader("Accept", "application/xml");
 		post.addHeader("Content-Type", "application/xml");
 		
