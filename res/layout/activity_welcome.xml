@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".WelcomeActivity" >
+
+    <TextView
+        android:id="@+id/wp_label_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_wp_welcome"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <EditText
+        android:id="@+id/wp_country_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wp_label_country_code"
+        android:ems="5"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/wp_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wp_label_phone_number"
+        android:ems="15"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/wp_label_country_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/wp_country_code"
+        android:layout_below="@+id/wp_label_welcome"
+        android:layout_marginTop="19dp"
+        android:text="@string/label_wp_country_code" />
+
+    <TextView
+        android:id="@+id/wp_label_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wp_country_code"
+        android:layout_marginTop="18dp"
+        android:text="@string/label_wp_phone_number" />
+
+    <Button
+        android:id="@+id/wp_button_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wp_phone_number"
+        android:layout_marginTop="36dp"
+        android:text="@string/button_wp_code_confirm" 
+        android:onClick="confirm"/>
+
+</RelativeLayout>

@@ -50,15 +50,18 @@ public class MainActivity extends ListActivity {
 
 	private void populateContactList() {
 		UserFactory.initialize(getApplicationContext());		
-
-		// get contacts list from Address Book
-		AddressBookDAO cm = AddressBookDAO.getInstance();
-		List<Contact> contacts = cm.readContacts(getContentResolver());
 		
-		// populate list
-		ContactsListAdapter contactsListAdapter = new ContactsListAdapter(MainActivity.this, R.layout.activity_main, contacts);
-		setListAdapter(contactsListAdapter);
-		contactsListAdapter.notifyDataSetChanged();
+		runOnUiThread(new Runnable() {			
+			@Override
+			public void run() {
+				// get contacts list from Address Book
+				AddressBookDAO cm = AddressBookDAO.getInstance();
+				List<Contact> contacts = cm.readContacts(getContentResolver());
+				// populate list
+				ContactsListAdapter contactsListAdapter = new ContactsListAdapter(MainActivity.this, R.layout.activity_main, contacts);
+				setListAdapter(contactsListAdapter);
+				contactsListAdapter.notifyDataSetChanged();
+			}
+		});
 	}
-
 }

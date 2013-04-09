@@ -3,16 +3,31 @@
 
     <string name="app_name">Shaco</string>
     <string name="title_share_contact">Share contact</string>
-    
     <string name="menu_settings">Settings</string>
     
+    
+    <string name="title_activity_dispatcher">Shaco</string> 
+
     <!-- Dialog -->
-	<string name="dialog_share_failed">Share failed</string>
-	<string name="dialog_share_success">Share success</string>
-	
-	<!-- Button -->
-	<string name="button_ok">OK</string>
-	<string name="button_cancel">Cancel</string>
-	<string name="button_close">Close</string>
-	
+    <string name="dialog_share_failed">Share failed</string>
+    <string name="dialog_share_success">Share success</string>
+
+    <!-- Button -->
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_close">Close</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- Welcome page -->    
+    <string name="title_activity_welcome">Welcome</string>   
+    <string name="label_wp_welcome">Welcome on Shaco!!</string>
+    <string name="label_wp_country_code">Please insert your country code:</string>
+    <string name="label_wp_phone_number">and  enter your phone number without the country code:</string>
+    <string name="button_wp_code_confirm">Confirm</string>
+
+    <!-- Registration code confirmation page -->    
+    <string name="title_activity_confirm_reg_code">ConfirmRegCodeActivity</string>    
+    <string name="label_reg_code_countrycode">Please enter the confirmation code that you have received by SMS</string>
+    <string name="button_reg_code_confirm">Confirm</string>
 </resources>

@@ -1,4 +1,4 @@
-package org.madbit.sharecontact.addressbook;
+package org.madbit.sharecontact.addressbook.vcard;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
