@@ -35,7 +35,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="org.madbit.sharecontact.activity.WelcomeActivity"
+            android:name="org.madbit.sharecontact.activity.RegistrationActivity"
             android:label="@string/title_activity_welcome" >
         </activity>
         <activity
@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.madbit.sharecontact.activity.ConfirmRegCodeActivity"
+            android:name="org.madbit.sharecontact.activity.RegistrationConfirmCodeActivity"
             android:label="@string/title_activity_confirm_reg_code" >
         </activity>
     </application>

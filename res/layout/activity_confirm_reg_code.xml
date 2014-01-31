@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ConfirmRegCodeActivity" >
+    tools:context=".RegistrationConfirmCodeActivity" >
 
     <TextView
         android:id="@+id/reg_code_label"
@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/reg_code_text"
         android:layout_marginTop="28dp"
-        android:text="@string/button_reg_code_confirm" />
+        android:text="@string/button_reg_code_confirm"
+        android:onClick="confirm" />
 
 </RelativeLayout>

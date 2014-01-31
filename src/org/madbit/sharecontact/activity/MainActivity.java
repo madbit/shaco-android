@@ -6,14 +6,18 @@ import org.madbit.sharecontact.R;
 import org.madbit.sharecontact.adapter.ContactsListAdapter;
 import org.madbit.sharecontact.addressbook.AddressBookDAO;
 import org.madbit.sharecontact.addressbook.domain.Contact;
+import org.madbit.sharecontact.common.StaticValues;
 import org.madbit.sharecontact.common.UserFactory;
+import org.madbit.sharecontact.utils.AppPreferenceManager;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
 	
@@ -36,6 +40,25 @@ public class MainActivity extends ListActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.menu_reset:
+	        	// reset registration state value 
+				AppPreferenceManager.putInt(StaticValues.PREFS_REGISTRATION_STATE, StaticValues.REG_STATE_REGISTER, this);
+				Toast.makeText(getApplicationContext(), "Reset", Toast.LENGTH_SHORT).show();
+				
+				// return to registration
+				Intent registrationActivity = new Intent(this, RegistrationActivity.class);			
+				this.startActivity(registrationActivity);
+				
+	            return true;	        
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	@Override

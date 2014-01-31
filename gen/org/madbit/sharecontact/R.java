@@ -24,8 +24,8 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000d;
         public static final int contactName=0x7f080004;
+        public static final int menu_reset=0x7f08000d;
         public static final int menu_settings=0x7f08000c;
         public static final int phoneNumber=0x7f080005;
         public static final int reg_code_button_confirm=0x7f080002;
@@ -43,40 +43,43 @@ public final class R {
         public static final int activity_confirm_reg_code=0x7f030000;
         public static final int activity_dispatcher=0x7f030001;
         public static final int activity_main=0x7f030002;
-        public static final int activity_share_contact=0x7f030003;
-        public static final int activity_welcome=0x7f030004;
+        public static final int activity_registration=0x7f030003;
+        public static final int activity_share_contact=0x7f030004;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
-        public static final int confirm_reg_code=0x7f070001;
+        public static final int registration_confirm_code=0x7f070001;
     }
     public static final class string {
-        public static final int action_settings=0x7f050009;
+        public static final int action_settings=0x7f05000a;
         public static final int app_name=0x7f050000;
-        public static final int button_cancel=0x7f050007;
-        public static final int button_close=0x7f050008;
+        public static final int button_cancel=0x7f050008;
+        public static final int button_close=0x7f050009;
         /**  Button 
          */
-        public static final int button_ok=0x7f050006;
-        public static final int button_reg_code_confirm=0x7f050012;
-        public static final int button_wp_code_confirm=0x7f05000f;
+        public static final int button_ok=0x7f050007;
+        public static final int button_reg_code_confirm=0x7f050013;
+        public static final int button_wp_code_confirm=0x7f050010;
         /**  Dialog 
          */
-        public static final int dialog_share_failed=0x7f050004;
-        public static final int dialog_share_success=0x7f050005;
-        public static final int hello_world=0x7f05000a;
-        public static final int label_reg_code_countrycode=0x7f050011;
-        public static final int label_wp_country_code=0x7f05000d;
-        public static final int label_wp_phone_number=0x7f05000e;
-        public static final int label_wp_welcome=0x7f05000c;
+        public static final int dialog_share_failed=0x7f050005;
+        public static final int dialog_share_success=0x7f050006;
+        public static final int hello_world=0x7f05000b;
+        public static final int label_reg_code_countrycode=0x7f050012;
+        public static final int label_wp_country_code=0x7f05000e;
+        public static final int label_wp_phone_number=0x7f05000f;
+        public static final int label_wp_welcome=0x7f05000d;
+        public static final int menu_reset=0x7f050003;
+        /**  Menu 
+         */
         public static final int menu_settings=0x7f050002;
         /**  Registration code confirmation page 
          */
-        public static final int title_activity_confirm_reg_code=0x7f050010;
-        public static final int title_activity_dispatcher=0x7f050003;
+        public static final int title_activity_confirm_reg_code=0x7f050011;
+        public static final int title_activity_dispatcher=0x7f050004;
         /**  Welcome page 
          */
-        public static final int title_activity_welcome=0x7f05000b;
+        public static final int title_activity_welcome=0x7f05000c;
         public static final int title_share_contact=0x7f050001;
     }
     public static final class style {

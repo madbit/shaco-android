@@ -3,7 +3,10 @@
 
     <string name="app_name">Shaco</string>
     <string name="title_share_contact">Share contact</string>
+    
+    <!-- Menu -->
     <string name="menu_settings">Settings</string>
+    <string name="menu_reset">Reset</string>
     
     
     <string name="title_activity_dispatcher">Shaco</string> 

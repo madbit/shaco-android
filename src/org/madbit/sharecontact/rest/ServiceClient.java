@@ -19,14 +19,14 @@ import org.madbit.sharecontact.exception.ServiceException;
 
 public class ServiceClient implements IServiceClient {
 	
-	private static final String SERVICE_ENPOINT = "http://141.137.79.51:8080/sc/rest";
+	private static final String SERVICE_ENPOINT = "http://10.0.2.2:8080/sc/rest";
 	private HttpClient httpClient;
 	
 	public ServiceClient() {
 		this.httpClient = new DefaultHttpClient();
 	}
 	
-	public String shareContact(String sender, String receiver, String contactToShare) {		
+	public String shareContact(String sender, String receiver, String contactToShare) {
 		HttpPost post = new HttpPost(SERVICE_ENPOINT + "/shareContact");
 		
 		try {
@@ -64,6 +64,36 @@ public class ServiceClient implements IServiceClient {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		    nameValuePairs.add(new BasicNameValuePair("msisdn", msisdn));
 			
+		    post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+						
+			HttpResponse response = httpClient.execute(post);
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			StringBuilder builder = new StringBuilder();
+			String aux = "";		
+			while ((aux = br.readLine()) != null)
+			    builder.append(aux);
+			
+			br.close();
+			return builder.toString();
+		} catch (UnsupportedEncodingException e) {
+			throw new ServiceException();
+		} catch (ClientProtocolException e) {
+			throw new ServiceException();
+		} catch (IOException e) {
+			throw new ServiceException();
+		}
+	}
+
+	@Override
+	public String confirmRegistrationCode(String regCode, String msisdn) throws ServiceException {
+		HttpPost post = new HttpPost(SERVICE_ENPOINT + "/confirmRegistrationCode");
+		
+		try {
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		    nameValuePairs.add(new BasicNameValuePair("regCode", regCode));
+		    nameValuePairs.add(new BasicNameValuePair("msisdn", msisdn));
+		    
 		    post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 						
 			HttpResponse response = httpClient.execute(post);

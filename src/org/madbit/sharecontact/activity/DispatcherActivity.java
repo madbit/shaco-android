@@ -1,6 +1,7 @@
 package org.madbit.sharecontact.activity;
 
 import org.madbit.sharecontact.R;
+import org.madbit.sharecontact.common.StaticValues;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,21 +17,22 @@ public class DispatcherActivity extends Activity {
 		setContentView(R.layout.activity_dispatcher);
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		int registrationState = prefs.getInt("registrationState", 0);
+		// 0 is the default value
+		int registrationState = prefs.getInt(StaticValues.PREFS_REGISTRATION_STATE, StaticValues.REG_STATE_REGISTER);
 
 		switch (registrationState) {
 		// registration
-		case 0:
-			Intent welcomeActivity = new Intent(this, WelcomeActivity.class);			
-			this.startActivity(welcomeActivity);
+		case StaticValues.REG_STATE_REGISTER:
+			Intent registrationActivity = new Intent(this, RegistrationActivity.class);			
+			this.startActivity(registrationActivity);
 			break;
 		// registration code confirmation
-		case 1:
-			Intent confirmActivity = new Intent(this, ConfirmRegCodeActivity.class);			
+		case StaticValues.REG_STATE_TOBECONFIRMED:
+			Intent confirmActivity = new Intent(this, RegistrationConfirmCodeActivity.class);			
 			this.startActivity(confirmActivity);
 			break;
 		// main activity
-		case 2:
+		case StaticValues.REG_STATE_CONFIRMED:
 			Intent mainActivity = new Intent(this, MainActivity.class);			
 			this.startActivity(mainActivity);
 			break;
