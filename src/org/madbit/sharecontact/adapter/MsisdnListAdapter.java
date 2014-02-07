@@ -4,7 +4,7 @@ package org.madbit.sharecontact.adapter;
 import java.util.List;
 
 import org.madbit.sharecontact.R;
-import org.madbit.sharecontact.addressbook.domain.Contact;
+import org.madbit.sharecontact.addressbook.domain.SimpleContact;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,13 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class ContactsListAdapter extends ArrayAdapter<Contact> {
+public class MsisdnListAdapter extends ArrayAdapter<SimpleContact> {
 
 	private final Context context;
-	private final List<Contact> contacts;
+	private final List<SimpleContact> contacts;
 	private int resource;
 		
-	public ContactsListAdapter(Context context, int resource, List<Contact> contacts) {
+	public MsisdnListAdapter(Context context, int resource, List<SimpleContact> contacts) {
 		super(context, resource, resource, contacts);
 		this.context = context;
 		this.resource = resource;
@@ -31,7 +31,7 @@ public class ContactsListAdapter extends ArrayAdapter<Contact> {
     public View getView(int position, View convertView, ViewGroup parent)
     {
 		LinearLayout contactsView;
-		Contact contact = getItem(position);
+		SimpleContact contact = getItem(position);
 		
 		if(convertView==null)
         {
@@ -46,6 +46,8 @@ public class ContactsListAdapter extends ArrayAdapter<Contact> {
 		TextView contactName =(TextView)contactsView.findViewById(R.id.contactName);
 		contactName.setText(contact.getDisplayName());
         
+		TextView phoneNumber =(TextView)contactsView.findViewById(R.id.phoneNumber);
+		phoneNumber.setText(contact.getMsisdn());
         
         return contactsView;
     }

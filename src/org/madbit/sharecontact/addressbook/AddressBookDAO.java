@@ -6,6 +6,7 @@ import java.util.List;
 import org.madbit.sharecontact.addressbook.common.ContactDetailType;
 import org.madbit.sharecontact.addressbook.domain.Contact;
 import org.madbit.sharecontact.addressbook.domain.ContactDetail;
+import org.madbit.sharecontact.addressbook.domain.SimpleContact;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
@@ -56,37 +57,37 @@ public class AddressBookDAO {
 			contact.setDisplayName(displayName);
 			
 			// get all phone numbers for contactId
-//			Cursor cursorPhones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
-//			List<ContactDetail> phoneNumbers = new ArrayList<ContactDetail>();
-//			while (cursorPhones.moveToNext()) {
-//				String number = cursorPhones.getString(cursorPhones.getColumnIndex(Phone.NUMBER));
-//				int type = cursorPhones.getInt(cursorPhones.getColumnIndex(Phone.TYPE));
-//				
-//				ContactDetail contactDetail = new ContactDetail();
-//				contactDetail.setValue(number);				
-//				
-//				switch (type) {
-//					case Phone.TYPE_HOME:
-//						contactDetail.setContactDetailType(ContactDetailType.HOME);
-//						break;
-//					case Phone.TYPE_MOBILE:
-//						contactDetail.setContactDetailType(ContactDetailType.MOBILE);
-//						break;
-//					case Phone.TYPE_WORK:
-//						contactDetail.setContactDetailType(ContactDetailType.WORK);
-//						break;
-//					default:
-//						contactDetail.setContactDetailType(ContactDetailType.HOME);
-//						break;
-//				}
-//				
-//				phoneNumbers.add(contactDetail);
-//				
-//				Log.d(TAG, contactId + " " + displayName + " " + number + " " + type);
-//			}
-//			cursorPhones.close();
+			Cursor cursorPhones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
+			List<ContactDetail> phoneNumbers = new ArrayList<ContactDetail>();
+			while (cursorPhones.moveToNext()) {
+				String number = cursorPhones.getString(cursorPhones.getColumnIndex(Phone.NUMBER));
+				int type = cursorPhones.getInt(cursorPhones.getColumnIndex(Phone.TYPE));
+				
+				ContactDetail contactDetail = new ContactDetail();
+				contactDetail.setValue(number);				
+				
+				switch (type) {
+					case Phone.TYPE_HOME:
+						contactDetail.setContactDetailType(ContactDetailType.HOME);
+						break;
+					case Phone.TYPE_MOBILE:
+						contactDetail.setContactDetailType(ContactDetailType.MOBILE);
+						break;
+					case Phone.TYPE_WORK:
+						contactDetail.setContactDetailType(ContactDetailType.WORK);
+						break;
+					default:
+						contactDetail.setContactDetailType(ContactDetailType.HOME);
+						break;
+				}
+				
+				phoneNumbers.add(contactDetail);
+				
+				Log.d(TAG, contactId + " " + displayName + " " + number + " " + type);
+			}
+			cursorPhones.close();
 			
-//			contact.setPhoneNumbers(phoneNumbers);
+			contact.setPhoneNumbers(phoneNumbers);
 			contacts.add(contact);
 					
 		}
@@ -145,6 +146,36 @@ public class AddressBookDAO {
 			contacts.add(contact);
 			
 			cursorPhones.close();			
+		}
+		cursorContact.close();
+
+		return contacts;
+	}
+	
+	public List<SimpleContact> readSimpleContacts(ContentResolver contentResolver) {
+		ArrayList<SimpleContact> contacts = new ArrayList<SimpleContact>();
+		
+		Cursor cursorContact = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+		
+		// get all the contacts
+		while(cursorContact.moveToNext()) {					
+			String contactId = cursorContact.getString(cursorContact.getColumnIndex(ContactsContract.Contacts._ID));
+			String displayName = cursorContact.getString(cursorContact.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+						
+			// get all phone numbers for contactId
+			Cursor cursorPhones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, Phone.CONTACT_ID + " = " + contactId, null, null);
+			
+			while (cursorPhones.moveToNext()) {
+				String number = cursorPhones.getString(cursorPhones.getColumnIndex(Phone.NUMBER));
+				
+				SimpleContact contact = new SimpleContact();
+				contact.setDisplayName(displayName);
+				contact.setMsisdn(number);
+				contacts.add(contact);
+				
+				Log.d(TAG, contactId + " " + displayName + " " + number);
+			}
+			cursorPhones.close();
 		}
 		cursorContact.close();
 

@@ -43,8 +43,9 @@ public final class R {
         public static final int activity_confirm_reg_code=0x7f030000;
         public static final int activity_dispatcher=0x7f030001;
         public static final int activity_main=0x7f030002;
-        public static final int activity_registration=0x7f030003;
-        public static final int activity_share_contact=0x7f030004;
+        public static final int activity_msisdn_list=0x7f030003;
+        public static final int activity_registration=0x7f030004;
+        public static final int activity_share_contact=0x7f030005;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;

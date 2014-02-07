@@ -20,6 +20,10 @@ public class DispatcherActivity extends Activity {
 		// 0 is the default value
 		int registrationState = prefs.getInt(StaticValues.PREFS_REGISTRATION_STATE, StaticValues.REG_STATE_REGISTER);
 
+		// TODO remove this
+//		Intent msisdnActivity = new Intent(this, MsisdnActivity.class);			
+//		this.startActivity(msisdnActivity);
+		
 		switch (registrationState) {
 		// registration
 		case StaticValues.REG_STATE_REGISTER:
